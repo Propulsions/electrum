@@ -62,7 +62,7 @@ else:
     data_files = []
 
 setup(
-    name="Electrum",
+    name="Electrum-DRK",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'slowaes>=0.1a1',
@@ -81,7 +81,7 @@ setup(
         'electrum_gui': 'gui',
         'electrum_plugins': 'plugins',
     },
-    scripts=['electrum'],
+    scripts=['electrum-drk'],
     data_files=data_files,
     py_modules=[
         'electrum.account',
@@ -142,10 +142,10 @@ setup(
         'electrum_plugins.plot',
 
     ],
-    description="Lightweight Bitcoin Wallet",
-    author="Thomas Voegtlin",
-    author_email="thomasv1@gmx.de",
+    description="Lightweight Darkcoin Testnet Wallet",
+    author="Thomas Voegtlin, Propulsion",
+    author_email="thomasv1@gmx.de, Propulsion@DarkcoinTalk.org",
     license="GNU GPLv3",
-    url="https://electrum.org",
-    long_description="""Lightweight Bitcoin Wallet"""
+    url="https://electrum.org, https://github.com/Propulsions/electrum-drk",
+    long_description="""Lightweight Darkcoin Testnet Wallet"""
 )
