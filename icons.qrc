@@ -1,6 +1,6 @@
 <RCC>
   <qresource prefix="/" >
-    <file>icons/electrum.png</file>
+    <file>icons/electrum-drk.png</file>
     <file>icons/clock1.png</file>
     <file>icons/clock2.png</file>
     <file>icons/clock3.png</file>
@@ -21,8 +21,8 @@
     <file>icons/status_waiting.png</file>
     <file>icons/status_lagging.png</file>
     <file>icons/switchgui.png</file>
-    <file>icons/electrum_light_icon.png</file>
-    <file>icons/electrum_dark_icon.png</file>
+    <file>icons/electrum-drk_light_icon.png</file>
+    <file>icons/electrum-drk_dark_icon.png</file>
     <file>icons/unconfirmed.png</file>
     <file>icons/unpaid.png</file>
     <file>icons/network.png</file>

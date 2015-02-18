@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2014 Thomas Voegtlin
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,10 +24,10 @@ import xmlrpclib
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-from electrum import bitcoin, util
-from electrum import transaction
-from electrum.plugins import BasePlugin, hook
-from electrum.i18n import _
+from electrum-drk import bitcoin, util
+from electrum-drk import transaction
+from electrum-drk.plugins import BasePlugin, hook
+from electrum-drk.i18n import _
 
 import sys
 import traceback
@@ -142,7 +142,7 @@ class Plugin(BasePlugin):
             self.send_button.hide()
 
     def cosigner_can_sign(self, tx, cosigner_xpub):
-        from electrum.transaction import x_to_xpub
+        from electrum-drk.transaction import x_to_xpub
         xpub_set = set([])
         for txin in tx.inputs:
             for x_pubkey in txin['x_pubkeys']:

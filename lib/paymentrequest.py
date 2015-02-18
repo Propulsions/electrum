@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2014 Thomas Voegtlin
 #
 # This program is free software: you can redistribute it and/or modify
@@ -40,8 +40,8 @@ import transaction
 import x509
 
 
-REQUEST_HEADERS = {'Accept': 'application/bitcoin-paymentrequest', 'User-Agent': 'Electrum'}
-ACK_HEADERS = {'Content-Type':'application/bitcoin-payment','Accept':'application/bitcoin-paymentack','User-Agent':'Electrum'}
+REQUEST_HEADERS = {'Accept': 'application/bitcoin-paymentrequest', 'User-Agent': 'Electrum-drk'}
+ACK_HEADERS = {'Content-Type':'application/bitcoin-payment','Accept':'application/bitcoin-paymentack','User-Agent':'Electrum-drk'}
 
 
 ca_list = {}
@@ -55,7 +55,7 @@ def load_certificates():
         ca_f = open(ca_path, 'r')
     except Exception:
         print "ERROR: Could not open %s"%ca_path
-        print "ca-bundle.crt file should be placed in ~/.electrum/ca/ca-bundle.crt"
+        print "ca-bundle.crt file should be placed in ~/.electrum-drk/ca/ca-bundle.crt"
         print "Documentation on how to download or create the file here: http://curl.haxx.se/docs/caextract.html"
         print "Payment will continue with manual verification."
         return False
@@ -294,7 +294,7 @@ class PaymentRequest:
 
         ref_out = paymnt.refund_to.add()
         ref_out.script = transaction.Transaction.pay_script('address', refund_addr)
-        paymnt.memo = "Paid using Electrum"
+        paymnt.memo = "Paid using Electrum-drk"
         pm = paymnt.SerializeToString()
 
         payurl = urlparse.urlparse(pay_det.payment_url)

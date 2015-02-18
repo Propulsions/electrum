@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -72,18 +72,18 @@ except Exception:
     sys.exit("cannot import ecdsa.curve_secp256k1. You probably need to upgrade ecdsa.\nTry: sudo pip install --upgrade ecdsa")
 
 
-# load local module as electrum
+# load local module as electrum-drk
 if is_bundle or is_local or is_android:
     import imp
-    imp.load_module('electrum', *imp.find_module('lib'))
-    imp.load_module('electrum_gui', *imp.find_module('gui'))
+    imp.load_module('electrum-drk', *imp.find_module('lib'))
+    imp.load_module('electrum-drk_gui', *imp.find_module('gui'))
 
 
-from electrum import util
-from electrum import SimpleConfig, Network, Wallet, WalletStorage, NetworkProxy, Commands, known_commands, pick_random_server
-from electrum.util import print_msg, print_error, print_stderr, print_json, set_verbosity, InvalidPassword
-from electrum.daemon import get_daemon
-from electrum.plugins import init_plugins
+from electrum-drk import util
+from electrum-drk import SimpleConfig, Network, Wallet, WalletStorage, NetworkProxy, Commands, known_commands, pick_random_server
+from electrum-drk.util import print_msg, print_error, print_stderr, print_json, set_verbosity, InvalidPassword
+from electrum-drk.daemon import get_daemon
+from electrum-drk.plugins import init_plugins
 
 
 # get password routine
@@ -107,7 +107,7 @@ def arg_parser():
     parser = optparse.OptionParser(usage=usage, add_help_option=False)
     parser.add_option("-h", "--help", action="callback", callback=print_help_cb, help="show this help text")
     parser.add_option("-g", "--gui", dest="gui", help="User interface: qt, lite, gtk, text or stdio")
-    parser.add_option("-w", "--wallet", dest="wallet_path", help="wallet path (default: electrum.dat)")
+    parser.add_option("-w", "--wallet", dest="wallet_path", help="wallet path (default: electrum-drk.dat)")
     parser.add_option("-o", "--offline", action="store_true", dest="offline", default=False, help="remain offline")
     parser.add_option("-d", "--daemon", action="store_true", dest="daemon", default=False, help="use daemon")
     parser.add_option("-C", "--concealed", action="store_true", dest="concealed", default=False, help="don't echo seed to console when restoring")
@@ -133,8 +133,8 @@ def arg_parser():
 
 def print_help(parser):
     parser.print_help()
-    print_msg("Type 'electrum help <command>' to see the help for a specific command")
-    print_msg("Type 'electrum --help' to see the list of options")
+    print_msg("Type 'electrum-drk help <command>' to see the help for a specific command")
+    print_msg("Type 'electrum-drk --help' to see the list of options")
     run_command(known_commands['help'])
 
 
@@ -190,7 +190,7 @@ if __name__ == '__main__':
     parser = arg_parser()
     options, args = parser.parse_args()
     if options.portable and options.wallet_path is None:
-        options.electrum_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum_data')
+        options.electrum-drk_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'electrum-drk_data')
 
     # config is an object passed to the various constructors (wallet, interface, gui)
     if is_android:
@@ -226,7 +226,7 @@ if __name__ == '__main__':
         if gui_name in ['lite', 'classic']:
             gui_name = 'qt'
         try:
-            gui = __import__('electrum_gui.' + gui_name, fromlist=['electrum_gui'])
+            gui = __import__('electrum-drk_gui.' + gui_name, fromlist=['electrum-drk_gui'])
         except ImportError:
             traceback.print_exc(file=sys.stdout)
             sys.exit()
@@ -243,7 +243,7 @@ if __name__ == '__main__':
         else:
             network = None
 
-        gui = gui.ElectrumGui(config, network)
+        gui = gui.Electrum-drkGui(config, network)
         gui.main(url)
 
         if network:
@@ -257,7 +257,7 @@ if __name__ == '__main__':
     if cmd == 'daemon':
         arg = args[1] if len(args)>1 else None
         if arg not in ['start', 'stop', 'status']:
-            print_msg("syntax: electrum daemon <start|status|stop>")
+            print_msg("syntax: electrum-drk daemon <start|status|stop>")
             sys.exit(1)
         s = get_daemon(config, False)
         if arg == 'start':
@@ -370,7 +370,7 @@ if __name__ == '__main__':
 
     if cmd.name not in ['create', 'restore'] and cmd.requires_wallet and not storage.file_exists:
         print_msg("Error: Wallet file not found.")
-        print_msg("Type 'electrum create' to create a new wallet, or provide a path to a wallet with the -w option")
+        print_msg("Type 'electrum-drk create' to create a new wallet, or provide a path to a wallet with the -w option")
         sys.exit(0)
 
 

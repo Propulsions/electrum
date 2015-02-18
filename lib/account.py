@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2013 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -247,7 +247,7 @@ class OldAccount(Account):
         return [self.mpk.encode('hex')]
 
     def get_type(self):
-        return _('Old Electrum format')
+        return _('Old Electrum-drk format')
 
     def get_xpubkeys(self, for_change, n):
         s = ''.join(map(lambda x: bitcoin.int_to_hex(x,2), (for_change, n)))

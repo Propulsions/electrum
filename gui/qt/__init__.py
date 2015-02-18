@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2012 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -34,11 +34,11 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum.i18n import _, set_language
-from electrum.util import print_error, print_msg
-from electrum.plugins import run_hook
-from electrum import WalletStorage, Wallet
-from electrum.bitcoin import MIN_RELAY_TX_FEE
+from electrum-drk.i18n import _, set_language
+from electrum-drk.util import print_error, print_msg
+from electrum-drk.plugins import run_hook
+from electrum-drk import WalletStorage, Wallet
+from electrum-drk.bitcoin import MIN_RELAY_TX_FEE
 
 try:
     import icons_rc
@@ -46,7 +46,7 @@ except Exception:
     sys.exit("Error: Could not import icons_rc.py, please generate it with: 'pyrcc4 icons.qrc -o gui/qt/icons_rc.py'")
 
 from util import *
-from main_window import ElectrumWindow
+from main_window import Electrum-drkWindow
 
 
 class OpenFileEventFilter(QObject):
@@ -62,7 +62,7 @@ class OpenFileEventFilter(QObject):
         return False
 
 
-class ElectrumGui:
+class Electrum-drkGui:
 
     def __init__(self, config, network, app=None):
         set_language(config.get('language'))
@@ -80,13 +80,13 @@ class ElectrumGui:
         m.addAction(_("Show/Hide"), self.show_or_hide)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        m.addAction(_("Exit Electrum"), self.close)
+        m.addAction(_("Exit Electrum-drk"), self.close)
         self.tray.setContextMenu(m)
 
     def toggle_tray_icon(self):
         self.dark_icon = not self.dark_icon
         self.config.set_key("dark_icon", self.dark_icon, True)
-        icon = QIcon(":icons/electrum_dark_icon.png") if self.dark_icon else QIcon(':icons/electrum_light_icon.png')
+        icon = QIcon(":icons/electrum-drk_dark_icon.png") if self.dark_icon else QIcon(':icons/electrum-drk_light_icon.png')
         self.tray.setIcon(icon)
 
     def show_or_hide(self):
@@ -124,7 +124,7 @@ class ElectrumGui:
         import lite_window
         if not self.check_qt_version():
             if self.config.get('lite_mode') is True:
-                msg = "Electrum was unable to load the 'Lite GUI' because it needs Qt version >= 4.7.\nChanging your config to use the 'Classic' GUI"
+                msg = "Electrum-drk was unable to load the 'Lite GUI' because it needs Qt version >= 4.7.\nChanging your config to use the 'Classic' GUI"
                 QMessageBox.warning(None, "Could not start Lite GUI.", msg)
                 self.config.set_key('lite_mode', False, True)
                 sys.exit(0)
@@ -176,15 +176,15 @@ class ElectrumGui:
 
         # init tray
         self.dark_icon = self.config.get("dark_icon", False)
-        icon = QIcon(":icons/electrum_dark_icon.png") if self.dark_icon else QIcon(':icons/electrum_light_icon.png')
+        icon = QIcon(":icons/electrum-drk_dark_icon.png") if self.dark_icon else QIcon(':icons/electrum-drk_light_icon.png')
         self.tray = QSystemTrayIcon(icon, None)
-        self.tray.setToolTip('Electrum')
+        self.tray.setToolTip('Electrum-drk')
         self.tray.activated.connect(self.tray_activated)
         self.build_tray_menu()
         self.tray.show()
 
         # main window
-        self.main_window = w = ElectrumWindow(self.config, self.network, self)
+        self.main_window = w = Electrum-drkWindow(self.config, self.network, self)
         self.current_window = self.main_window
 
         #lite window

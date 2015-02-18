@@ -13,7 +13,7 @@ version = imp.load_source('version', 'lib/version.py')
 util = imp.load_source('util', 'lib/util.py')
 
 if sys.version_info[:3] < (2, 7, 0):
-    sys.exit("Error: Electrum requires Python version >= 2.7.0...")
+    sys.exit("Error: Electrum-drk requires Python version >= 2.7.0...")
 
 
 
@@ -26,20 +26,20 @@ if (len(sys.argv) > 1) and (sys.argv[1] == "install"):
         try:
             os.mkdir(usr_share)
         except:
-            sys.exit("Error: cannot write to %s.\nIf you do not have root permissions, you may install Electrum in a virtualenv.\nAlso, please note that you can run Electrum without installing it on your system."%usr_share)
+            sys.exit("Error: cannot write to %s.\nIf you do not have root permissions, you may install Electrum-drk in a virtualenv.\nAlso, please note that you can run Electrum-drk without installing it on your system."%usr_share)
 
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum.desktop']),
-        (os.path.join(usr_share, 'app-install', 'icons/'), ['icons/electrum.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-drk.desktop']),
+        (os.path.join(usr_share, 'app-install', 'icons/'), ['icons/electrum-drk.png'])
     ]
     if not os.path.exists('locale'):
         os.mkdir('locale')
     for lang in os.listdir('locale'):
-        if os.path.exists('locale/%s/LC_MESSAGES/electrum.mo' % lang):
-            data_files.append((os.path.join(usr_share, 'locale/%s/LC_MESSAGES' % lang), ['locale/%s/LC_MESSAGES/electrum.mo' % lang]))
+        if os.path.exists('locale/%s/LC_MESSAGES/electrum-drk.mo' % lang):
+            data_files.append((os.path.join(usr_share, 'locale/%s/LC_MESSAGES' % lang), ['locale/%s/LC_MESSAGES/electrum-drk.mo' % lang]))
 
 
-    appdata_dir = os.path.join(usr_share, "electrum")
+    appdata_dir = os.path.join(usr_share, "electrum-drk")
     data_files += [
         (appdata_dir, ["data/README"]),
         (os.path.join(appdata_dir, "cleanlook"), [
@@ -62,8 +62,8 @@ else:
     data_files = []
 
 setup(
-    name="Electrum-DRK",
-    version=version.ELECTRUM_VERSION,
+    name="Electrum-drk-DRK",
+    version=version.ELECTRUM-DRK_VERSION,
     install_requires=[
         'slowaes>=0.1a1',
         'ecdsa>=0.9',
@@ -77,75 +77,75 @@ setup(
         'tlslite'
     ],
     package_dir={
-        'electrum': 'lib',
-        'electrum_gui': 'gui',
-        'electrum_plugins': 'plugins',
+        'electrum-drk': 'lib',
+        'electrum-drk_gui': 'gui',
+        'electrum-drk_plugins': 'plugins',
     },
-    scripts=['electrum-drk'],
+    scripts=['electrum-drk-drk'],
     data_files=data_files,
     py_modules=[
-        'electrum.account',
-        'electrum.bitcoin',
-        'electrum.blockchain',
-        'electrum.bmp',
-        'electrum.commands',
-        'electrum.daemon',
-        'electrum.i18n',
-        'electrum.interface',
-        'electrum.mnemonic',
-        'electrum.msqr',
-        'electrum.network',
-        'electrum.network_proxy',
-        'electrum.old_mnemonic',
-        'electrum.paymentrequest',
-        'electrum.paymentrequest_pb2',
-        'electrum.plugins',
-        'electrum.qrscanner',
-        'electrum.simple_config',
-        'electrum.synchronizer',
-        'electrum.transaction',
-        'electrum.util',
-        'electrum.verifier',
-        'electrum.version',
-        'electrum.wallet',
-        'electrum.x509',
-        'electrum_gui.gtk',
-        'electrum_gui.qt.__init__',
-        'electrum_gui.qt.amountedit',
-        'electrum_gui.qt.console',
-        'electrum_gui.qt.history_widget',
-        'electrum_gui.qt.icons_rc',
-        'electrum_gui.qt.installwizard',
-        'electrum_gui.qt.lite_window',
-        'electrum_gui.qt.main_window',
-        'electrum_gui.qt.network_dialog',
-        'electrum_gui.qt.password_dialog',
-        'electrum_gui.qt.paytoedit',
-        'electrum_gui.qt.qrcodewidget',
-        'electrum_gui.qt.qrtextedit',
-        'electrum_gui.qt.qrwindow',
-        'electrum_gui.qt.receiving_widget',
-        'electrum_gui.qt.seed_dialog',
-        'electrum_gui.qt.transaction_dialog',
-        'electrum_gui.qt.util',
-        'electrum_gui.qt.version_getter',
-        'electrum_gui.stdio',
-        'electrum_gui.text',
-        'electrum_plugins.btchipwallet',
-        'electrum_plugins.coinbase_buyback',
-        'electrum_plugins.cosigner_pool',
-        'electrum_plugins.exchange_rate',
-        'electrum_plugins.greenaddress_instant',
-        'electrum_plugins.labels',
-        'electrum_plugins.trezor',
-        'electrum_plugins.virtualkeyboard',
-        'electrum_plugins.plot',
+        'electrum-drk.account',
+        'electrum-drk.bitcoin',
+        'electrum-drk.blockchain',
+        'electrum-drk.bmp',
+        'electrum-drk.commands',
+        'electrum-drk.daemon',
+        'electrum-drk.i18n',
+        'electrum-drk.interface',
+        'electrum-drk.mnemonic',
+        'electrum-drk.msqr',
+        'electrum-drk.network',
+        'electrum-drk.network_proxy',
+        'electrum-drk.old_mnemonic',
+        'electrum-drk.paymentrequest',
+        'electrum-drk.paymentrequest_pb2',
+        'electrum-drk.plugins',
+        'electrum-drk.qrscanner',
+        'electrum-drk.simple_config',
+        'electrum-drk.synchronizer',
+        'electrum-drk.transaction',
+        'electrum-drk.util',
+        'electrum-drk.verifier',
+        'electrum-drk.version',
+        'electrum-drk.wallet',
+        'electrum-drk.x509',
+        'electrum-drk_gui.gtk',
+        'electrum-drk_gui.qt.__init__',
+        'electrum-drk_gui.qt.amountedit',
+        'electrum-drk_gui.qt.console',
+        'electrum-drk_gui.qt.history_widget',
+        'electrum-drk_gui.qt.icons_rc',
+        'electrum-drk_gui.qt.installwizard',
+        'electrum-drk_gui.qt.lite_window',
+        'electrum-drk_gui.qt.main_window',
+        'electrum-drk_gui.qt.network_dialog',
+        'electrum-drk_gui.qt.password_dialog',
+        'electrum-drk_gui.qt.paytoedit',
+        'electrum-drk_gui.qt.qrcodewidget',
+        'electrum-drk_gui.qt.qrtextedit',
+        'electrum-drk_gui.qt.qrwindow',
+        'electrum-drk_gui.qt.receiving_widget',
+        'electrum-drk_gui.qt.seed_dialog',
+        'electrum-drk_gui.qt.transaction_dialog',
+        'electrum-drk_gui.qt.util',
+        'electrum-drk_gui.qt.version_getter',
+        'electrum-drk_gui.stdio',
+        'electrum-drk_gui.text',
+        'electrum-drk_plugins.btchipwallet',
+        'electrum-drk_plugins.coinbase_buyback',
+        'electrum-drk_plugins.cosigner_pool',
+        'electrum-drk_plugins.exchange_rate',
+        'electrum-drk_plugins.greenaddress_instant',
+        'electrum-drk_plugins.labels',
+        'electrum-drk_plugins.trezor',
+        'electrum-drk_plugins.virtualkeyboard',
+        'electrum-drk_plugins.plot',
 
     ],
     description="Lightweight Darkcoin Testnet Wallet",
     author="Thomas Voegtlin, Propulsion",
     author_email="thomasv1@gmx.de, Propulsion@DarkcoinTalk.org",
     license="GNU GPLv3",
-    url="https://electrum.org, https://github.com/Propulsions/electrum-drk",
+    url="https://electrum-drk.org, https://github.com/Propulsions/electrum-drk-drk",
     long_description="""Lightweight Darkcoin Testnet Wallet"""
 )

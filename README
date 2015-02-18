@@ -1,25 +1,25 @@
-Electrum - lightweight Bitcoin client
+Electrum-drk - lightweight Bitcoin client
 
 Licence: GNU GPL v3
 Author: Thomas Voegtlin
 Language: Python
-Homepage: https://electrum.org/
+Homepage: https://electrum-drk.org/
 
 
 1. GETTING STARTED
 ------------------
 
-To run Electrum from this directory, just do:
+To run Electrum-drk from this directory, just do:
 
-  ./electrum
+  ./electrum-drk
 
-If you install Electrum on your system, you can run it from any
+If you install Electrum-drk on your system, you can run it from any
 directory.
 
 If you have pip, you can do:
 
   python setup.py sdist
-  sudo pip install --pre dist/Electrum-2.0.tar.gz
+  sudo pip install --pre dist/Electrum-drk-2.0.tar.gz
 
 
 If you don't have pip, install with:
@@ -29,8 +29,8 @@ If you don't have pip, install with:
 
 
 
-To start Electrum from your web browser, see
-http://electrum.org/bitcoin_URIs.html
+To start Electrum-drk from your web browser, see
+http://electrum-drk.org/bitcoin_URIs.html
 
 
 
@@ -49,6 +49,6 @@ On Mac OS X:
   # On brew installs
   ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
 
-  sudo hdiutil create -fs HFS+ -volname "Electrum" -srcfolder dist/Electrum.app dist/electrum-VERSION-macosx.dmg
+  sudo hdiutil create -fs HFS+ -volname "Electrum-drk" -srcfolder dist/Electrum-drk.app dist/electrum-drk-VERSION-macosx.dmg
 
 

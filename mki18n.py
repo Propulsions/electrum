@@ -2,8 +2,8 @@
 from StringIO import StringIO
 import urllib2, os, zipfile, pycurl
 
-crowdin_identifier = 'electrum'
-crowdin_file_name = 'electrum-client/messages.pot'
+crowdin_identifier = 'electrum-drk'
+crowdin_file_name = 'electrum-drk-client/messages.pot'
 locale_file_name = 'locale/messages.pot'
 
 if os.path.exists('contrib/crowdin_api_key.txt'):
@@ -39,7 +39,7 @@ zfobj = zipfile.ZipFile(StringIO(urllib2.urlopen('http://crowdin.net/download/pr
 
 print 'Unzip translations'
 for name in zfobj.namelist():
-    if not name.startswith('electrum-client/locale'):
+    if not name.startswith('electrum-drk-client/locale'):
         continue
     if name.endswith('/'):
         if not os.path.exists(name[16:]):
@@ -58,6 +58,6 @@ for lang in os.listdir('./locale'):
     mo_dir = 'locale/%s/LC_MESSAGES' % lang
     if not os.path.exists(mo_dir):
         os.mkdir(mo_dir)
-    cmd = 'msgfmt --output-file="%s/electrum.mo" "locale/%s/electrum.po"' % (mo_dir,lang)
+    cmd = 'msgfmt --output-file="%s/electrum-drk.mo" "locale/%s/electrum-drk.po"' % (mo_dir,lang)
     print 'Installing',lang
     os.system(cmd)

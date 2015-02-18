@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -78,7 +78,7 @@ class WalletStorage(object):
         new_path = os.path.join(config.path, "wallets", "default_wallet")
 
         # default path in pre 1.9 versions
-        old_path = os.path.join(config.path, "electrum.dat")
+        old_path = os.path.join(config.path, "electrum-drk.dat")
         if os.path.exists(old_path) and not os.path.exists(new_path):
             os.rename(old_path, new_path)
 
@@ -149,7 +149,7 @@ class Abstract_Wallet(object):
     """
     def __init__(self, storage):
         self.storage = storage
-        self.electrum_version = ELECTRUM_VERSION
+        self.electrum-drk_version = ELECTRUM-DRK_VERSION
         self.gap_limit_for_change = 3 # constant
         # saved fields
         self.seed_version          = storage.get('seed_version', NEW_SEED_VERSION)
@@ -1642,8 +1642,8 @@ class Wallet(object):
                     # pbkdf2 was not included with the binaries, and wallet creation aborted.
                     msg += "\nIt does not contain any keys, and can safely be removed."
                 else:
-                    # creation was complete if electrum was run from source
-                    msg += "\nPlease open this file with Electrum 1.9.8, and move your coins to a new wallet."
+                    # creation was complete if electrum-drk was run from source
+                    msg += "\nPlease open this file with Electrum-drk 1.9.8, and move your coins to a new wallet."
             raise BaseException(msg)
 
         wallet_type = storage.get('wallet_type')

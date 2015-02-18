@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2012 thomasv@ecdsa.org
 #
 # This program is free software: you can redistribute it and/or modify
@@ -32,7 +32,7 @@ class Blockchain(threading.Thread):
         self.lock = threading.Lock()
         self.local_height = 0
         self.running = False
-        self.headers_url = 'http://headers.electrum.org/blockchain_headers'
+        self.headers_url = 'http://headers.electrum-drk.org/blockchain_headers'
         self.set_local_height()
         self.queue = Queue.Queue()
 

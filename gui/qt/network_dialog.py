@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2012 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,13 +17,13 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys, time, datetime, re, threading
-from electrum.i18n import _
-from electrum.util import print_error, print_msg
+from electrum-drk.i18n import _
+from electrum-drk.util import print_error, print_msg
 import os.path, json, ast, traceback
 
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
-from electrum import DEFAULT_SERVERS, DEFAULT_PORTS
+from electrum-drk import DEFAULT_SERVERS, DEFAULT_PORTS
 
 from util import *
 
@@ -71,8 +71,8 @@ class NetworkDialog(QDialog):
         hbox.addWidget(l)
         hbox.addWidget(QLabel(status))
         hbox.addStretch(50)
-        msg = _("Electrum sends your wallet addresses to a single server, in order to receive your transaction history.") + "\n\n" \
-            + _("In addition, Electrum connects to several nodes in order to download block headers and find out the longest blockchain.") + " " \
+        msg = _("Electrum-drk sends your wallet addresses to a single server, in order to receive your transaction history.") + "\n\n" \
+            + _("In addition, Electrum-drk connects to several nodes in order to download block headers and find out the longest blockchain.") + " " \
             + _("This blockchain is used to verify the transactions sent by the address server.")
         hbox.addWidget(HelpButton(msg))
         vbox.addLayout(hbox)
@@ -102,8 +102,8 @@ class NetworkDialog(QDialog):
         self.autocycle_cb.setChecked(auto_connect)
         grid.addWidget(self.autocycle_cb, 0, 1)
         if not self.config.is_modifiable('auto_cycle'): self.autocycle_cb.setEnabled(False)
-        msg = _("If auto-connect is enabled, Electrum will always use a server that is on the longest blockchain.") + " " \
-            + _("If it is disabled, Electrum will warn you if your server is lagging.")
+        msg = _("If auto-connect is enabled, Electrum-drk will always use a server that is on the longest blockchain.") + " " \
+            + _("If it is disabled, Electrum-drk will warn you if your server is lagging.")
         grid.addWidget(HelpButton(msg), 0, 4)
         grid.addWidget(self.server_host, 0, 2, 1, 2)
         grid.addWidget(self.server_port, 0, 3)

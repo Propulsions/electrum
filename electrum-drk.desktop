@@ -1,14 +1,14 @@
-# If you want electrum to appear in a linux app launcher ("start menu"), install this by doing:
-# sudo desktop-file-install electrum.desktop
+# If you want electrum-drk to appear in a linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum-drk.desktop
 
 [Desktop Entry]
 Comment=Lightweight Bitcoin Client
-Exec=electrum %u
-GenericName[en_US]=Electrum
-GenericName=Electrum
-Icon=/usr/share/app-install/icons/electrum.png
-Name[en_US]=Electrum Bitcoin Wallet
-Name=Electrum Bitcoin Wallet
+Exec=electrum-drk %u
+GenericName[en_US]=Electrum-drk
+GenericName=Electrum-drk
+Icon=/usr/share/app-install/icons/electrum-drk.png
+Name[en_US]=Electrum-drk Bitcoin Wallet
+Name=Electrum-drk Bitcoin Wallet
 Categories=Network;
 StartupNotify=false
 Terminal=false

@@ -1,5 +1,5 @@
 """
-py2app/py2exe build script for Electrum Litecoin
+py2app/py2exe build script for Electrum-drk Litecoin
 
 Usage (Mac OS X):
      python setup.py py2app
@@ -15,11 +15,11 @@ import shutil
 import sys
 
 from lib.util import print_error
-from lib.version import ELECTRUM_VERSION as version
+from lib.version import ELECTRUM-DRK_VERSION as version
 
 
-name = "Electrum"
-mainscript = 'electrum'
+name = "Electrum-drk"
+mainscript = 'electrum-drk'
 
 if sys.version_info[:3] < (2, 6, 0):
     print_error("Error: " + name + " requires Python version >= 2.6.0...")
@@ -28,7 +28,7 @@ if sys.version_info[:3] < (2, 6, 0):
 if sys.platform == 'darwin':
     from plistlib import Plist
     plist = Plist.fromFile('Info.plist')
-    plist.update(dict(CFBundleIconFile='electrum.icns'))
+    plist.update(dict(CFBundleIconFile='electrum-drk.icns'))
 
     shutil.copy(mainscript, mainscript + '.py')
     mainscript += '.py'
@@ -38,7 +38,7 @@ if sys.platform == 'darwin':
         options=dict(py2app=dict(argv_emulation=True,
                                  includes=['PyQt4.QtCore', 'PyQt4.QtGui', 'PyQt4.QtWebKit', 'PyQt4.QtNetwork', 'sip'],
                                  packages=['lib', 'gui', 'plugins', 'packages'],
-                                 iconfile='electrum.icns',
+                                 iconfile='electrum-drk.icns',
                                  plist=plist,
                                  resources=["data", "icons"])),
     )

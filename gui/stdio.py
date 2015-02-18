@@ -1,23 +1,23 @@
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum.wallet import WalletStorage, Wallet
-from electrum.util import format_satoshis, set_verbosity
-from electrum.bitcoin import is_valid
-from electrum.network import filter_protocol
+from electrum-drk.wallet import WalletStorage, Wallet
+from electrum-drk.util import format_satoshis, set_verbosity
+from electrum-drk.bitcoin import is_valid
+from electrum-drk.network import filter_protocol
 import sys, getpass, datetime
 
 # minimal fdisk like gui for console usage
 # written by rofl0r, with some bits stolen from the text gui (ncurses)
 
-class ElectrumGui:
+class Electrum-drkGui:
 
     def __init__(self, config, network):
         self.network = network
         self.config = config
         storage = WalletStorage(config)
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum create'"
+            print "Wallet not found. try 'electrum-drk create'"
             exit()
 
         self.done = 0
@@ -218,12 +218,12 @@ class ElectrumGui:
             print(_('Error'))
 
     def network_dialog(self):
-        print("use 'electrum setconfig server/proxy' to change your network settings")
+        print("use 'electrum-drk setconfig server/proxy' to change your network settings")
         return True
 
 
     def settings_dialog(self):
-        print("use 'electrum setconfig' to change your settings")
+        print("use 'electrum-drk setconfig' to change your settings")
         return True
 
     def password_dialog(self):

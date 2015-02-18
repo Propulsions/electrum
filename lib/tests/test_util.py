@@ -34,10 +34,10 @@ class TestUtil(unittest.TestCase):
 
 
     def test_parse_URI_address_label(self):
-        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?label=electrum%20test', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', '', 'electrum test', '', '')
+        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?label=electrum-drk%20test', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', '', 'electrum-drk test', '', '')
 
     def test_parse_URI_address_message(self):
-        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?message=electrum%20test', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', '', '', 'electrum test', '')
+        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?message=electrum-drk%20test', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', '', '', 'electrum-drk test', '')
 
     def test_parse_URI_address_amount(self):
         self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?amount=0.0003', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 30000, '', '', '')
@@ -49,7 +49,7 @@ class TestUtil(unittest.TestCase):
         self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?test=test', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', '', '', '', '')
 
     def test_parse_URI_multiple_args(self):
-        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?amount=0.00004&label=electrum-test&message=electrum%20test&test=none&r=http://domain.tld/page', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 4000, 'electrum-test', 'electrum test', 'http://domain.tld/page')
+        self._do_test_parse_URI('bitcoin:15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma?amount=0.00004&label=electrum-drk-test&message=electrum-drk%20test&test=none&r=http://domain.tld/page', '15mKKb2eos1hWa6tisdPwwDC1a5J1y9nma', 4000, 'electrum-drk-test', 'electrum-drk test', 'http://domain.tld/page')
 
     def test_parse_URI_no_address_request_url(self):
         self._do_test_parse_URI('bitcoin:?r=http://domain.tld/page?h%3D2a8628fc2fbe', '', '', '', '', 'http://domain.tld/page?h=2a8628fc2fbe')

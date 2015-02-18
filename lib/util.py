@@ -49,13 +49,13 @@ def print_json(obj):
 
 def user_dir():
     if "HOME" in os.environ:
-        return os.path.join(os.environ["HOME"], ".electrum")
+        return os.path.join(os.environ["HOME"], ".electrum-drk-drk")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum")
+        return os.path.join(os.environ["APPDATA"], "Electrum-drk-drk")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-drk-drk")
     elif 'ANDROID_DATA' in os.environ:
-        return "/sdcard/electrum/"
+        return "/sdcard/electrum-drk-drk/"
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -81,17 +81,17 @@ def usr_share_dir():
     return os.path.join(sys.prefix, "share")
 
 def appdata_dir():
-    """Find the path to the application data directory; add an electrum folder and return path."""
+    """Find the path to the application data directory; add an electrum-drk folder and return path."""
     if platform.system() == "Windows":
-        return os.path.join(os.environ["APPDATA"], "Electrum")
+        return os.path.join(os.environ["APPDATA"], "Electrum-drk-drk")
     elif platform.system() == "Linux":
-        return os.path.join(usr_share_dir(), "electrum")
+        return os.path.join(usr_share_dir(), "electrum-drk-drk")
     elif (platform.system() == "Darwin" or
           platform.system() == "DragonFly" or
           platform.system() == "OpenBSD" or
           platform.system() == "FreeBSD" or
 	  platform.system() == "NetBSD"):
-        return "/Library/Application Support/Electrum"
+        return "/Library/Application Support/Electrum-drk-drk"
     else:
         raise Exception("Unknown system")
 

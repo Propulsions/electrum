@@ -7,8 +7,8 @@ if __name__ == '__main__':
     os.chdir(os.path.dirname(os.path.realpath(__file__)))
     os.chdir('..')
 
-    imp.load_module('electrum', *imp.find_module('../lib'))
-    from electrum.version import ELECTRUM_VERSION as version
+    imp.load_module('electrum-drk', *imp.find_module('../lib'))
+    from electrum-drk.version import ELECTRUM-DRK_VERSION as version
 
     if not ( os.path.exists('packages')):
         print "The packages directory is missing."
@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     os.system('rm -rf dist/e4a-%s'%version)
     os.mkdir('dist/e4a-%s'%version)
-    shutil.copyfile("electrum",'dist/e4a-%s/e4a.py'%version)
+    shutil.copyfile("electrum-drk",'dist/e4a-%s/e4a.py'%version)
     shutil.copytree("packages",'dist/e4a-%s/packages'%version)
     shutil.copytree("lib",'dist/e4a-%s/lib'%version)
     os.mkdir('dist/e4a-%s/gui'%version)

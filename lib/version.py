@@ -1,7 +1,7 @@
-ELECTRUM_VERSION = "2.0a1"  # version of the client package
+ELECTRUM-DRK_VERSION = "2.0a1"  # version of the client package
 PROTOCOL_VERSION = '0.11'    # protocol version requested
-NEW_SEED_VERSION = 11       # electrum versions >= 2.0
-OLD_SEED_VERSION = 4        # electrum versions < 2.0
+NEW_SEED_VERSION = 11       # electrum-drk versions >= 2.0
+OLD_SEED_VERSION = 4        # electrum-drk versions < 2.0
 
 
 # The hash of the mnemonic seed must begin with this

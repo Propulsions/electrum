@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2014 Thomas Voegtlin
 #
 # This program is free software: you can redistribute it and/or modify
@@ -26,8 +26,8 @@ from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 import PyQt4.QtGui as QtGui
 
-from electrum_gui.qt.qrcodewidget import QRCodeWidget
-from electrum.i18n import _
+from electrum-drk_gui.qt.qrcodewidget import QRCodeWidget
+from electrum-drk.i18n import _
 
 if platform.system() == 'Windows':
     MONOSPACE_FONT = 'Lucida Console'
@@ -43,7 +43,7 @@ class QR_Window(QWidget):
     def __init__(self, win):
         QWidget.__init__(self)
         self.win = win
-        self.setWindowTitle('Electrum - '+_('Invoice'))
+        self.setWindowTitle('Electrum-drk - '+_('Invoice'))
         self.setMinimumSize(800, 250)
         self.address = ''
         self.label = ''

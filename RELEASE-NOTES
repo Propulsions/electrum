@@ -37,7 +37,7 @@
  * The 'Send' tab in the Qt GUI supports transactions with multiple
    outputs, and raw hexadecimal scripts.
 
- * The GUI can use the daemon: "electrum -d". The daemon can serve
+ * The GUI can use the daemon: "electrum-drk -d". The daemon can serve
    several clients. It times out if no client uses if for more than 5
    minutes.
 
@@ -48,7 +48,7 @@
 
  * Client supports servers with SSL certificates signed by a CA.
 
- * Documentation is now hosted on a wiki: http://electrum.orain.org
+ * Documentation is now hosted on a wiki: http://electrum-drk.orain.org
 
  * ECIES encrypt/decrypt methods, availabe in the GUI and using the
    command line:
@@ -59,7 +59,7 @@
 
 # Release 1.9.8
 
-* Electrum servers were upgraded to version 0.9. The new server stores
+* Electrum-drk servers were upgraded to version 0.9. The new server stores
   a Patrica tree of all UTXOs, an idea proposed by Alan Reiner in the
   bitcointalk forum. This property allows the client to directly
   request the balance of any address. The new commands are:
@@ -71,7 +71,7 @@
   a daemon, that remains connected and handles subsequent
   commands. The daemon terminates itself if it remains unused for more
   than one minute. The purpose of this is to make scripting more
-  efficient. For example, a bash script using many electrum commands
+  efficient. For example, a bash script using many electrum-drk commands
   will open only one connection.
 
 # Release 1.9.7
@@ -167,23 +167,23 @@ bugfixes: connection problems, transactions staying unverified
 # Release 1.7
 
 * The Classic GUI can be extended with plugins. Developers who want to
-add new features or third-party services to Electrum are invited to
+add new features or third-party services to Electrum-drk are invited to
 write plugins. Some previously existing and non-essential features of
-Electrum (point-of-sale mode, qrcode scanner) were removed from the
+Electrum-drk (point-of-sale mode, qrcode scanner) were removed from the
 core and are now available as plugins.
 
 * The wallet waits for 2 confirmations before creating new
 addresses. This makes recovery from seed more robust. Note that it
-might create unwanted gaps if you use Electrum 1.7 together with older
-versions of Electrum.
+might create unwanted gaps if you use Electrum-drk 1.7 together with older
+versions of Electrum-drk.
 
 * An interactive Python console replaces the 'Wall' tab. The provided
 python environment gives users access to the wallet and gui. Most
-electrum commands are available as python function in the
+electrum-drk commands are available as python function in the
 console. Custom scripts an be loaded with a "run(filename)"
 command. Tab-completions are available.
 
-* The location of the Electrum folder in Windows changed from
+* The location of the Electrum-drk folder in Windows changed from
 LOCALAPPDATA to APPDATA. Discussion on this topic can be found here:
 https://bitcointalk.org/index.php?topic=144575.0
 

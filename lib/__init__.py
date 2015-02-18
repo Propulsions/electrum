@@ -1,4 +1,4 @@
-from version import ELECTRUM_VERSION
+from version import ELECTRUM-DRK_VERSION
 from util import format_satoshis, print_msg, print_json, print_error, set_verbosity
 from wallet import WalletSynchronizer, WalletStorage
 from wallet import Wallet, Wallet_2of2, Wallet_2of3, Imported_Wallet

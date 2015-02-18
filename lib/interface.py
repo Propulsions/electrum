@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,7 @@ import ssl
 import requests
 ca_path = requests.certs.where()
 
-from version import ELECTRUM_VERSION, PROTOCOL_VERSION
+from version import ELECTRUM-DRK_VERSION, PROTOCOL_VERSION
 from util import print_error, print_msg
 from simple_config import SimpleConfig
 
@@ -326,7 +326,7 @@ class TcpInterface(threading.Thread):
                     self.is_connected = False
                     break
                 else:
-                    self.send_request({'method':'server.version', 'params':[ELECTRUM_VERSION, PROTOCOL_VERSION]})
+                    self.send_request({'method':'server.version', 'params':[ELECTRUM-DRK_VERSION, PROTOCOL_VERSION]})
                     self.is_ping = True
                     t = time.time()
             try:
@@ -352,7 +352,7 @@ class HttpInterface(TcpInterface):
     def run(self):
         self.start_http()
         if self.is_connected:
-            self.send_request({'method':'server.version', 'params':[ELECTRUM_VERSION, PROTOCOL_VERSION]})
+            self.send_request({'method':'server.version', 'params':[ELECTRUM-DRK_VERSION, PROTOCOL_VERSION]})
             self.change_status()
             self.run_http()
         self.change_status()

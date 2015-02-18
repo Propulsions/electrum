@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -22,9 +22,9 @@
 from __future__ import absolute_import
 import android
 
-from electrum import SimpleConfig, Wallet, WalletStorage, format_satoshis, mnemonic_encode, mnemonic_decode
-from electrum.bitcoin import is_valid
-from electrum import util
+from electrum-drk import SimpleConfig, Wallet, WalletStorage, format_satoshis, mnemonic_encode, mnemonic_decode
+from electrum-drk.bitcoin import is_valid
+from electrum-drk import util
 from decimal import Decimal
 import datetime, re
 
@@ -165,8 +165,8 @@ def make_layout(s, scrollable = False):
         android:background="#ff222222">
 
         <TextView
-          android:id="@+id/textElectrum"
-          android:text="Electrum"
+          android:id="@+id/textElectrum-drk"
+          android:text="Electrum-drk"
           android:textSize="7pt"
           android:textColor="#ff4444ff"
           android:gravity="left"
@@ -453,7 +453,7 @@ def pay_to(recipient, amount, fee, label):
     else:
         password = None
 
-    droid.dialogCreateSpinnerProgress("Electrum", "signing transaction...")
+    droid.dialogCreateSpinnerProgress("Electrum-drk", "signing transaction...")
     droid.dialogShow()
 
     try:
@@ -884,7 +884,7 @@ menu_commands = ["send", "receive", "settings", "contacts", "main"]
 wallet = None
 network = None
 
-class ElectrumGui:
+class Electrum-drkGui:
 
     def __init__(self, config, _network):
         global wallet, network
@@ -1009,7 +1009,7 @@ class ElectrumGui:
     def restore_wallet(self):
 
         msg = "recovering wallet..."
-        droid.dialogCreateSpinnerProgress("Electrum", msg)
+        droid.dialogCreateSpinnerProgress("Electrum-drk", msg)
         droid.dialogShow()
 
         wallet.restore(lambda x: None)

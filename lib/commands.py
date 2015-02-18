@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -258,8 +258,8 @@ class Commands:
         return self.network.get_servers()
 
     def getversion(self):
-        import electrum  # Needs to stay here to prevent ciruclar imports
-        return electrum.ELECTRUM_VERSION
+        import electrum-drk  # Needs to stay here to prevent ciruclar imports
+        return electrum-drk.ELECTRUM-DRK_VERSION
 
     def getmpk(self):
         return self.wallet.get_master_public_keys()

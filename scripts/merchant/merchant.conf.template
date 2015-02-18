@@ -6,7 +6,7 @@ password = choose a password
 [sqlite3]
 database = database filename
 
-[electrum]
+[electrum-drk]
 xpub = the master public key of your wallet
 wallet_path = path where the script will save the wallet
 

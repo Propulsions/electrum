@@ -8,31 +8,31 @@ try:
     import PyQt4.QtCore as QtCore
 
 except ImportError:
-    print "You need to have PyQT installed to run Electrum in graphical mode."
+    print "You need to have PyQT installed to run Electrum-drk in graphical mode."
     print "If you have pip installed try 'sudo pip install pyqt' if you are on Debian/Ubuntu try 'sudo apt-get install python-qt4'."
     sys.exit(0)
 
 from decimal import Decimal as D
-from electrum.util import get_resource_path as rsrc
-from electrum.bitcoin import is_valid
-from electrum.i18n import _
+from electrum-drk.util import get_resource_path as rsrc
+from electrum-drk.bitcoin import is_valid
+from electrum-drk.i18n import _
 import decimal
 import json
 import os.path
 import random
 import re
 import time
-from electrum.wallet import Wallet, WalletStorage
+from electrum-drk.wallet import Wallet, WalletStorage
 import webbrowser
 import history_widget
 import receiving_widget
-from electrum import util
+from electrum-drk import util
 import datetime
 
-from electrum.version import ELECTRUM_VERSION as electrum_version
-from electrum.util import format_satoshis, age
+from electrum-drk.version import ELECTRUM-DRK_VERSION as electrum-drk_version
+from electrum-drk.util import format_satoshis, age
 
-from main_window import ElectrumWindow
+from main_window import Electrum-drkWindow
 import shutil
 
 from util import *
@@ -251,8 +251,8 @@ class MiniWindow(QDialog):
         show_hist = self.config.get("gui_show_receiving",False)
         self.toggle_receiving_layout(show_hist)
 
-        self.setWindowIcon(QIcon(":icons/electrum.png"))
-        self.setWindowTitle("Electrum")
+        self.setWindowIcon(QIcon(":icons/electrum-drk.png"))
+        self.setWindowTitle("Electrum-drk")
         self.setWindowFlags(Qt.Window|Qt.MSWindowsFixedSizeDialogHint)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
         self.setObjectName("main_window")
@@ -365,7 +365,7 @@ class MiniWindow(QDialog):
         unit = self.actuator.g.base_unit()
 
         self.balance_label.set_balance_text(amount, unit, quote_text)
-        self.setWindowTitle("Electrum %s - %s %s" % (electrum_version, amount, unit))
+        self.setWindowTitle("Electrum-drk %s - %s %s" % (electrum-drk_version, amount, unit))
 
     def amount_input_changed(self, amount_text):
         """Update the number of bitcoins displayed."""
@@ -386,7 +386,7 @@ class MiniWindow(QDialog):
     def create_quote_text(self, btc_balance):
         """Return a string copy of the amount fiat currency the
         user has in bitcoins."""
-        from electrum.plugins import run_hook
+        from electrum-drk.plugins import run_hook
         r = {}
         run_hook('get_fiat_balance_text', btc_balance, r)
         return r.get(0,'')
@@ -457,7 +457,7 @@ class MiniWindow(QDialog):
 
 
     def the_website(self):
-        webbrowser.open("http://electrum.org")
+        webbrowser.open("http://electrum-drk.org")
 
 
     def toggle_receiving_layout(self, toggle_state):
@@ -583,7 +583,7 @@ class ReceivePopup(QDialog):
         main_layout.addWidget(address_display)
 
         self.setMouseTracking(True)
-        self.setWindowTitle("Electrum - " + _("Receive Bitcoin payment"))
+        self.setWindowTitle("Electrum-drk - " + _("Receive Bitcoin payment"))
         self.setWindowFlags(Qt.Window|Qt.FramelessWindowHint|
                             Qt.MSWindowsFixedSizeDialogHint)
         self.layout().setSizeConstraint(QLayout.SetFixedSize)
@@ -644,7 +644,7 @@ class MiniActuator:
         """Set the inital fiat currency conversion country (USD/EUR/GBP) in
         the GUI to what it was set to in the wallet."""
         currency = self.g.config.get('currency')
-        # currency can be none when Electrum is used for the first
+        # currency can be none when Electrum-drk is used for the first
         # time and no setting has been created yet.
         if currency is not None:
             set_quote_currency(currency)
@@ -674,7 +674,7 @@ class MiniActuator:
         s.start()
         w = QDialog()
         w.resize(200, 70)
-        w.setWindowTitle('Electrum')
+        w.setWindowTitle('Electrum-drk')
         l = QLabel(_('Sending transaction, please wait.'))
         vbox = QVBoxLayout()
         vbox.addWidget(l)

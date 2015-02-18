@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2014 Thomas Voegtlin
 #
 # This program is free software: you can redistribute it and/or modify

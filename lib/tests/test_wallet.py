@@ -115,7 +115,7 @@ class TestNewWallet(WalletTestCase):
         super(TestNewWallet, self).setUp()
         self.storage = WalletStorage(self.fake_config)
         self.wallet = NewWallet(self.storage)
-        # This cannot be constructed by electrum at random, it should be safe
+        # This cannot be constructed by electrum-drk at random, it should be safe
         # from eventual collisions.
         self.wallet.add_seed(self.seed_text, self.password)
         self.wallet.create_master_keys(self.password)

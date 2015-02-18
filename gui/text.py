@@ -2,15 +2,15 @@ import curses, datetime, locale
 from decimal import Decimal
 _ = lambda x:x
 #from i18n import _
-from electrum.util import format_satoshis, set_verbosity
-from electrum.bitcoin import is_valid
+from electrum-drk.util import format_satoshis, set_verbosity
+from electrum-drk.bitcoin import is_valid
 
-from electrum import Wallet, WalletStorage
+from electrum-drk import Wallet, WalletStorage
 
 import tty, sys
 
 
-class ElectrumGui:
+class Electrum-drkGui:
 
     def __init__(self, config, network):
 
@@ -18,7 +18,7 @@ class ElectrumGui:
         self.network = network
         storage = WalletStorage(config)
         if not storage.file_exists:
-            print "Wallet not found. try 'electrum create'"
+            print "Wallet not found. try 'electrum-drk create'"
             exit()
 
         self.wallet = Wallet(storage)

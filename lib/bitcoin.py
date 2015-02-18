@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -161,9 +161,9 @@ def is_old_seed(seed):
     words = seed.strip().split()
     try:
         old_mnemonic.mn_decode(words)
-        uses_electrum_words = True
+        uses_electrum-drk_words = True
     except Exception:
-        uses_electrum_words = False
+        uses_electrum-drk_words = False
 
     try:
         seed.decode('hex')
@@ -171,7 +171,7 @@ def is_old_seed(seed):
     except Exception:
         is_hex = False
 
-    return is_hex or (uses_electrum_words and len(words) == 12)
+    return is_hex or (uses_electrum-drk_words and len(words) == 12)
 
 
 # pywallet openssl private key implementation

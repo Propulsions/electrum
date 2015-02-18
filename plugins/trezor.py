@@ -6,17 +6,17 @@ from sys import stderr
 from time import sleep
 from base64 import b64encode, b64decode
 
-import electrum
-from electrum.account import BIP32_Account
-from electrum.bitcoin import EncodeBase58Check, public_key_to_bc_address, bc_address_to_hash_160
-from electrum.i18n import _
-from electrum.plugins import BasePlugin, hook
-from electrum.transaction import deserialize
-from electrum.wallet import BIP32_HD_Wallet
-from electrum.util import print_error
+import electrum-drk
+from electrum-drk.account import BIP32_Account
+from electrum-drk.bitcoin import EncodeBase58Check, public_key_to_bc_address, bc_address_to_hash_160
+from electrum-drk.i18n import _
+from electrum-drk.plugins import BasePlugin, hook
+from electrum-drk.transaction import deserialize
+from electrum-drk.wallet import BIP32_HD_Wallet
+from electrum-drk.util import print_error
 
-from electrum_gui.qt.password_dialog import make_password_dialog, run_password_dialog
-from electrum_gui.qt.util import ok_cancel_buttons, EnterButton
+from electrum-drk_gui.qt.password_dialog import make_password_dialog, run_password_dialog
+from electrum-drk_gui.qt.util import ok_cancel_buttons, EnterButton
 
 try:
     from trezorlib.client import types
@@ -50,7 +50,7 @@ class Plugin(BasePlugin):
         self._requires_settings = True
         self.wallet = None
         if self._is_available:
-            electrum.wallet.wallet_types.append(('hardware', 'trezor', _("Trezor wallet"), TrezorWallet))
+            electrum-drk.wallet.wallet_types.append(('hardware', 'trezor', _("Trezor wallet"), TrezorWallet))
 
     def _init(self):
         return TREZOR
@@ -168,7 +168,7 @@ class Plugin(BasePlugin):
             return False
 
 
-from electrum.wallet import pw_decode, bip32_private_derivation, bip32_root
+from electrum-drk.wallet import pw_decode, bip32_private_derivation, bip32_root
 
 class TrezorWallet(BIP32_HD_Wallet):
     wallet_type = 'trezor'
@@ -377,7 +377,7 @@ class TrezorWallet(BIP32_HD_Wallet):
 
         return outputs
 
-    def electrum_tx_to_txtype(self, tx):
+    def electrum-drk_tx_to_txtype(self, tx):
         t = types.TransactionType()
         d = deserialize(tx.raw)
         t.version = d['version']
@@ -395,7 +395,7 @@ class TrezorWallet(BIP32_HD_Wallet):
 
     def get_tx(self, tx_hash):
         tx = self.transactions[tx_hash]
-        return self.electrum_tx_to_txtype(tx)
+        return self.electrum-drk_tx_to_txtype(tx)
 
     def check_proper_device(self):
         self.get_client().ping('t')

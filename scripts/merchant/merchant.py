@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 #
-# Electrum - lightweight Bitcoin client
+# Electrum-drk - lightweight Bitcoin client
 # Copyright (C) 2011 thomasv@gitorious
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,8 +24,8 @@ import json
 import Queue
 import sqlite3
 
-import electrum
-electrum.set_verbosity(False)
+import electrum-drk
+electrum-drk.set_verbosity(False)
 
 import ConfigParser
 config = ConfigParser.ConfigParser()
@@ -41,8 +41,8 @@ received_url = config.get('callback','received')
 expired_url = config.get('callback','expired')
 cb_password = config.get('callback','password')
 
-wallet_path = config.get('electrum','wallet_path')
-xpub = config.get('electrum','xpub')
+wallet_path = config.get('electrum-drk','wallet_path')
+xpub = config.get('electrum-drk','xpub')
 
 
 pending_requests = {}
@@ -52,13 +52,13 @@ num = 0
 def check_create_table(conn):
     global num
     c = conn.cursor()
-    c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='electrum_payments';")
+    c.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='electrum-drk_payments';")
     data = c.fetchall()
     if not data: 
-        c.execute("""CREATE TABLE electrum_payments (address VARCHAR(40), amount FLOAT, confirmations INT(8), received_at TIMESTAMP, expires_at TIMESTAMP, paid INT(1), processed INT(1));""")
+        c.execute("""CREATE TABLE electrum-drk_payments (address VARCHAR(40), amount FLOAT, confirmations INT(8), received_at TIMESTAMP, expires_at TIMESTAMP, paid INT(1), processed INT(1));""")
         conn.commit()
 
-    c.execute("SELECT Count(address) FROM 'electrum_payments'")
+    c.execute("SELECT Count(address) FROM 'electrum-drk_payments'")
     num = c.fetchone()[0]
     print "num rows", num
 
@@ -137,7 +137,7 @@ def do_dump(password):
     conn = sqlite3.connect(database);
     cur = conn.cursor()
     # read pending requests from table
-    cur.execute("SELECT oid, * FROM electrum_payments;")
+    cur.execute("SELECT oid, * FROM electrum-drk_payments;")
     data = cur.fetchall()
     return map(row_to_dict, data)
 
@@ -147,7 +147,7 @@ def getrequest(oid, password):
     conn = sqlite3.connect(database);
     cur = conn.cursor()
     # read pending requests from table
-    cur.execute("SELECT oid, * FROM electrum_payments WHERE oid=%d;"%(oid))
+    cur.execute("SELECT oid, * FROM electrum-drk_payments WHERE oid=%d;"%(oid))
     data = cur.fetchone()
     return row_to_dict(data)
 
@@ -180,7 +180,7 @@ def db_thread():
         cur = conn.cursor()
 
         # read pending requests from table
-        cur.execute("SELECT address, amount, confirmations FROM electrum_payments WHERE paid IS NULL;")
+        cur.execute("SELECT address, amount, confirmations FROM electrum-drk_payments WHERE paid IS NULL;")
         data = cur.fetchall()
 
         # add pending requests to the wallet
@@ -204,21 +204,21 @@ def db_thread():
             addr = params
             # set paid=1 for received payments
             print "received payment from", addr
-            cur.execute("update electrum_payments set paid=1 where address='%s'"%addr)
+            cur.execute("update electrum-drk_payments set paid=1 where address='%s'"%addr)
 
         elif cmd == 'request':
             # add a new request to the table.
             addr, amount, confs, minutes = params
-            sql = "INSERT INTO electrum_payments (address, amount, confirmations, received_at, expires_at, paid, processed)"\
+            sql = "INSERT INTO electrum-drk_payments (address, amount, confirmations, received_at, expires_at, paid, processed)"\
                 + " VALUES ('%s', %f, %d, datetime('now'), datetime('now', '+%d Minutes'), NULL, NULL);"%(addr, amount, confs, minutes)
             print sql
             cur.execute(sql)
 
         # set paid=0 for expired requests 
-        cur.execute("""UPDATE electrum_payments set paid=0 WHERE expires_at < CURRENT_TIMESTAMP and paid is NULL;""")
+        cur.execute("""UPDATE electrum-drk_payments set paid=0 WHERE expires_at < CURRENT_TIMESTAMP and paid is NULL;""")
 
         # do callback for addresses that received payment or expired
-        cur.execute("""SELECT oid, address, paid from electrum_payments WHERE paid is not NULL and processed is NULL;""")
+        cur.execute("""SELECT oid, address, paid from electrum-drk_payments WHERE paid is not NULL and processed is NULL;""")
         data = cur.fetchall()
         for item in data:
             oid, address, paid = item
@@ -233,7 +233,7 @@ def db_thread():
             try:
                 response_stream = urllib2.urlopen(req)
                 print 'Got Response for %s' % address
-                cur.execute("UPDATE electrum_payments SET processed=1 WHERE oid=%d;"%(oid))
+                cur.execute("UPDATE electrum-drk_payments SET processed=1 WHERE oid=%d;"%(oid))
             except urllib2.HTTPError:
                 print "cannot do callback", data_json
             except ValueError, e:
@@ -256,9 +256,9 @@ if __name__ == '__main__':
         sys.exit(ret)
 
     # start network
-    c = electrum.SimpleConfig({'wallet_path':wallet_path})
-    daemon_socket = electrum.daemon.get_daemon(c,True)
-    network = electrum.NetworkProxy(daemon_socket,config)
+    c = electrum-drk.SimpleConfig({'wallet_path':wallet_path})
+    daemon_socket = electrum-drk.daemon.get_daemon(c,True)
+    network = electrum-drk.NetworkProxy(daemon_socket,config)
     network.start()
 
     # wait until connected
@@ -270,12 +270,12 @@ if __name__ == '__main__':
         sys.exit(1)
 
     # create watching_only wallet
-    storage = electrum.WalletStorage(c)
+    storage = electrum-drk.WalletStorage(c)
     if not storage.file_exists:
         print "creating wallet file"
-        wallet = electrum.wallet.Wallet.from_xpub(xpub, storage)
+        wallet = electrum-drk.wallet.Wallet.from_xpub(xpub, storage)
     else:
-        wallet = electrum.wallet.Wallet(storage)
+        wallet = electrum-drk.wallet.Wallet(storage)
 
     wallet.synchronize = lambda: None # prevent address creation by the wallet
     wallet.start_threads(network)

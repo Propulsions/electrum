@@ -1,4 +1,4 @@
-from electrum.util import print_error
+from electrum-drk.util import print_error
 
 import httplib, urllib
 import socket
@@ -18,33 +18,33 @@ import PyQt4.QtGui as QtGui
 import aes
 import base64
 
-import electrum
-from electrum.plugins import BasePlugin, hook
-from electrum.i18n import _
+import electrum-drk
+from electrum-drk.plugins import BasePlugin, hook
+from electrum-drk.i18n import _
 
-from electrum_gui.qt import HelpButton, EnterButton
+from electrum-drk_gui.qt import HelpButton, EnterButton
 
 class Plugin(BasePlugin):
 
-    target_host = 'labelectrum.herokuapp.com'
+    target_host = 'labelectrum-drk.herokuapp.com'
     encode_password = None
 
     def fullname(self):
         return _('Label Sync')
 
     def description(self):
-        return '%s\n\n%s%s%s' % (_("This plugin can sync your labels across multiple Electrum installs by using a remote database to save your data. Labels, transactions ids and addresses are encrypted before they are sent to the remote server. This code might increase the load of your wallet with a few microseconds as it will sync labels on each startup."), _("To get started visit"), " http://labelectrum.herokuapp.com/ ", _(" to sign up for an account."))
+        return '%s\n\n%s%s%s' % (_("This plugin can sync your labels across multiple Electrum-drk installs by using a remote database to save your data. Labels, transactions ids and addresses are encrypted before they are sent to the remote server. This code might increase the load of your wallet with a few microseconds as it will sync labels on each startup."), _("To get started visit"), " http://labelectrum-drk.herokuapp.com/ ", _(" to sign up for an account."))
 
     def version(self):
         return "0.2.1"
 
     def encode(self, message):
-        encrypted = electrum.bitcoin.aes_encrypt_with_iv(self.encode_password, self.iv, message.encode('utf8'))
+        encrypted = electrum-drk.bitcoin.aes_encrypt_with_iv(self.encode_password, self.iv, message.encode('utf8'))
         encoded_message = base64.b64encode(encrypted)
         return encoded_message
 
     def decode(self, message):
-        decoded_message = electrum.bitcoin.aes_decrypt_with_iv(self.encode_password, self.iv, base64.b64decode(message)).decode('utf8')
+        decoded_message = electrum-drk.bitcoin.aes_decrypt_with_iv(self.encode_password, self.iv, base64.b64decode(message)).decode('utf8')
         return decoded_message
 
 
@@ -137,7 +137,7 @@ class Plugin(BasePlugin):
         decrypt_key_text.setReadOnly(True)
         layout.addWidget(decrypt_key_text, 1,1)
         layout.addWidget(QLabel("Decryption key: "),1,0)
-        layout.addWidget(HelpButton("This key can be used on the LabElectrum website to decrypt your data in case you want to review it online."),1,2)
+        layout.addWidget(HelpButton("This key can be used on the LabElectrum-drk website to decrypt your data in case you want to review it online."),1,2)
 
         self.upload = QPushButton("Force upload")
         self.upload.clicked.connect(self.full_push)
