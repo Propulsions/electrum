@@ -180,8 +180,8 @@ class Blockchain(threading.Thread):
         h['nonce'] = hex_to_int(s[76:80])
         return h
 
-    def hash_header(self, header):
-        return rev_hex(Hash(self.header_to_string(header).decode('hex')).encode('hex'))
+    def hash_header(self, header): #Using darkcoin's algorithm. 
+        return rev_hex(HashX11(self.header_to_string(header).decode('hex')).encode('hex'))
 
     def path(self):
         return os.path.join( self.config.path, 'blockchain_headers')
