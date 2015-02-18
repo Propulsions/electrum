@@ -114,7 +114,7 @@ class Blockchain(threading.Thread):
 
             prev_hash = self.hash_header(prev_header)
             bits, target = self.get_target(height/2016, chain)
-            _hash = self.hash_header(header)
+            _hash = self.X11hash_header(header) #Use Darkcoin's hash algorithm. 
             try:
                 assert prev_hash == header.get('prev_block_hash')
                 assert bits == header.get('bits')
@@ -146,16 +146,19 @@ class Blockchain(threading.Thread):
             height = index*2016 + i
             raw_header = data[i*80:(i+1)*80]
             header = self.header_from_string(raw_header)
-            _hash = self.hash_header(header)
+            _hash = self.X11hash_header(header) #Use Darkcoin's hash algorithm. 
             assert previous_hash == header.get('prev_block_hash')
             assert bits == header.get('bits')
             assert int('0x'+_hash,16) < target
 
             previous_header = header
-            previous_hash = _hash
+            previous_hash = self.hash_header(header) #Changed for darkcoin.
 
         self.save_chunk(index, data)
         print_error("validated chunk %d"%height)
+
+    def X11hash_header(self, header): #Darkcoin POW algorithm.
+        return rev_hex(HashX11(self.header_to_string(header).decode('hex')).encode('hex'))
 
 
 
@@ -246,7 +249,7 @@ class Blockchain(threading.Thread):
             chain = []  # Do not use mutables as default values!
 
         max_target = 0x00000000FFFF0000000000000000000000000000000000000000000000000000
-        if index == 0: return 0x1d00ffff, max_target
+        if index == 0: return 0x207fffff, max_target #Darkcoin Testnet src/chainparams.cpp L162
 
         first = self.read_header((index-1)*2016)
         last = self.read_header(index*2016-1)
